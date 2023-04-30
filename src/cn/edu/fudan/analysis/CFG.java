@@ -103,7 +103,7 @@ public class CFG {
         for (Instruction i : instructions) {
             DexBackedInstruction dbi = (DexBackedInstruction) i;
 
-            int offset;
+            int offset = 0;
             switch (dbi.opcode) {
                 case GOTO:
                     offset = ((DexBackedInstruction10t) dbi).getCodeOffset() * 2 + dbi.instructionStart;
@@ -118,8 +118,6 @@ public class CFG {
                     System.out.println(dbi.getOpcode() + ", offset: " + offset);
                     break;
                 case IF_EQ:
-                    offset = dbi.instructionStart + dbi.getOpcode().format.size;
-
                 case IF_NE:
                 case IF_LT:
                 case IF_GE:
@@ -138,17 +136,15 @@ public class CFG {
                 case IF_LEZ:
                     offset = dbi.instructionStart + dbi.getOpcode().format.size;
                     System.out.println(dbi.getOpcode() + ", offset1: " + offset);
-
                     offset = ((DexBackedInstruction21t) dbi).getCodeOffset() * 2 + dbi.instructionStart;
                     System.out.println(dbi.getOpcode() + ", offset2: " + offset);
                     break;
-
                 case PACKED_SWITCH:
                 case SPARSE_SWITCH:
+                case FILL_ARRAY_DATA:
                     offset = ((DexBackedInstruction31t) dbi).getCodeOffset() * 2 + dbi.instructionStart;
                     System.out.println(dbi.getOpcode() + ", switch payload offset: " + offset);
                     break;
-
                 case PACKED_SWITCH_PAYLOAD:
                 case SPARSE_SWITCH_PAYLOAD:
                     // Since switch-payloads actually are just data, not an instruction.
@@ -181,8 +177,8 @@ public class CFG {
                         System.out.println(dbi.getOpcode() + ", offset: " + s.getOffset());
                     }
                     break;
-
             }
+//            linkBlock(cfg, cfg.getEntryBB(), offset);
         }
 
         return cfg;
