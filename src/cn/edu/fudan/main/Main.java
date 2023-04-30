@@ -110,7 +110,7 @@ public class Main {
                     dumpAllMethodNames(targetClassDef);
                     System.exit(-1);
                 }
-
+                System.out.println("cccjjzzzz");
                 //draw the CFG
                 drawCFG4Method(targetMethod, args.methodName);
             }
