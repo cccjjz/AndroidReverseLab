@@ -1,0 +1,6 @@
+[submodule "ReverseLab/lab6_cfganalysis"]
+	path = ReverseLab/lab6_cfganalysis
+	url = https://github.com/cccjjz/AndroidReverseLab.git
+[submodule "ReverseLab/ReverseLab/lab6_cfganalysis"]
+	path = ReverseLab/ReverseLab/lab6_cfganalysis
+	url = https://github.com/cccjjz/AndroidReverseLab.git
